@@ -15,3 +15,15 @@ Beim Uniform Crossover wird jedes Gen zufällig von einem Elternteil übernommen
 
 Implementierung:
 Die Initialpopulation besteht aus 10 vordefinierten Chromosomen mit teilweise doppelten Slots. Die Selektion erfolgt durch Turnierauswahl: Drei zufällig ausgewählte Chromosomen "konkurrieren", wobei das Chromosom mit der höchsten Fitness als Elternteil ausgewählt wird. Eine Mutationsrate von 10 % sorgt für Diversität – bei jeder Mutation wird ein zufälliges Gen durch einen neuen Slot (1–25) ersetzt. Die gesamte Population wird in jeder Generation durch die Nachkommen ersetzt (Generational Replacement).
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Immobilienpreisvorhersage:
+
+Dieses Projekt entwickelt ein maschinelles Lernmodell zur Vorhersage von Hauspreisen in Ames, Iowa. Der verwendete Datensatz umfasst Immobilienmerkmale wie Größe, Lage und Ausstattung. Als Modell kommt ein Random Forest Regressor zum Einsatz, der den Zusammenhang zwischen den Features und dem Verkaufspreis (SalePrice) analysiert.
+
+Datenvorverarbeitung: Irrelevante Spalten wie Order, Alley, Pool QC und weitere wurden entfernt, da sie entweder keine Aussagekraft besaßen oder zu viele fehlende Werte aufwiesen. Fehlende Werte wurden je nach Datentyp behandelt – kategorische Features wie MSZoning erhielten den Platzhalter 'None', während numerische Spalten mit dem Mittelwert der jeweiligen Spalte aufgefüllt wurden. Anschließend wurden kategorische Features mithilfe von Label-Encoding (z. B. für Neighborhood) in numerische Werte umgewandelt. Alle numerischen Features wurden zudem mit dem StandardScaler standardisiert, um eine einheitliche Skalierung zu gewährleisten.
+
+Modellierung: Die Daten wurden in 80 % Trainings- und 20 % Testdaten aufgeteilt (test_size=0.2). Das Random-Forest-Modell wurde mit 100 Bäumen (n_estimators=100) und einem festen random_state=42 trainiert, um Reproduzierbarkeit zu sichern. Die Analyse der Feature-Wichtigkeiten identifizierte Schlüsselmerkmale wie Overall Qual und Gr Liv Area als entscheidende Preistreiber.
+
+Ergebnisse: Das Modell erreichte einen MAE (Mean Absolute Error) von 16.036,61 und einen MSE (Mean Squared Error) von 719.155.170,50. Der R²-Score von 0,91 zeigt, dass 91 % der Varianz im Verkaufspreis durch das Modell erklärt werden – ein Hinweis auf hohe Vorhersagegenauigkeit.
